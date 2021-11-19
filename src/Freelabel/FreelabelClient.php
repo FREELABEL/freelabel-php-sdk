@@ -41,7 +41,7 @@ class FreelabelClient {
     {
         $this->endpoint = $baseUrl;
         if ($httpClient === null) {
-            $this->httpClient = new HttpClient(self::ENDPOINT);
+            $this->httpClient = new HttpClient($this->endpoint);
         } else {
             $this->httpClient = $httpClient;
         }
