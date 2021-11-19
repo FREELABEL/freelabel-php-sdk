@@ -9,13 +9,13 @@ use Freelabel\Resource\Base\BaseResource;
  *
  * @package Freelabel\Resources
  */
-class ProductType extends BaseResource
+class ProductCategory extends BaseResource
 {
-    protected $resourceUrl = 'product-types';
+    protected $resourceUrl = 'product-categories';
 
     public function __construct(HttpClient $httpClient)
     {
-        $this->setModel(new \Freelabel\Model\Product\ProductType());
+        $this->setModel(new \Freelabel\Model\Product\ProductCategory());
         $this->setResourceUrl($this->resourceUrl);
         parent::__construct($httpClient);
     }

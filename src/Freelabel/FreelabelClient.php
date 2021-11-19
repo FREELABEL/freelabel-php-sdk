@@ -6,6 +6,8 @@ namespace Freelabel;
 use Freelabel\Authentication\Auth;
 use Freelabel\Http\HttpClient;
 use Freelabel\Resource\Product\Product;
+use Freelabel\Resource\Product\ProductCategory;
+use Freelabel\Resource\Product\ProductType;
 
 /**
  * Class Client
@@ -24,6 +26,16 @@ class FreelabelClient {
      */
     public $product;
 
+    /**
+     * @var Resources\ProductType
+     */
+    public $productType;
+
+    /**
+     * @var Resources\ProductCategory
+     */
+    public $productCategory;
+
 
     public function __construct($accessKey = null, HttpClient $httpClient = null, array $config = [])
     {
@@ -41,6 +53,8 @@ class FreelabelClient {
         }
 
         $this->product = new Product($this->httpClient);
+        $this->productType = new ProductType($this->httpClient);
+        $this->productCategory = new ProductCategory($this->httpClient);
     }
 
 

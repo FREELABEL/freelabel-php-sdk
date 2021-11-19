@@ -195,7 +195,6 @@ class HttpClient
         $headers = array_merge($headers, $this->headers);
 
         $client = new Client(['http_errors' => false]);
-
         $response = $client->request($method, $this->getRequestUrl($resourceUrl, $query), [
             'headers' => $headers,
             'body' => $body

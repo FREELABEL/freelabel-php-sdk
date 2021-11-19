@@ -121,9 +121,9 @@ class BaseResource
      *
      * @return Objects\Balance|Objects\BaseList|Objects\Conversation\Conversation|Objects\Hlr|Objects\Lookup|Objects\Message|Objects\Verify|Objects\VoiceMessage|null
      */
-    public function getList(array $parameters =  [])
+    public function getListWithPagination(array $parameters =  [])
     {
-        list($status, , $body) = $this->httpClient->performHttpGetRequest(\Freelabel\Http\HttpClient::REQUEST_GET, $this->resourceUrl, $parameters);
+        list($status, , $body) = $this->httpClient->sendHttpRequest(\Freelabel\Http\HttpClient::REQUEST_GET, $this->resourceUrl, $parameters);
 
         if ($status === 200) {
             $body = json_decode($body);
@@ -146,7 +146,32 @@ class BaseResource
             return $baseList;
         }
 
-        return $this->processRequest($body);
+        return $this->processRequest($status, $body);
+    }
+    public function getList(array $parameters =  [])
+    {
+        list($status, , $body) = $this->httpClient->sendHttpRequest(\Freelabel\Http\HttpClient::REQUEST_GET, $this->resourceUrl, $parameters);
+
+        if ($status === 200) {
+            $body = json_decode($body);
+            $items = $body->data;
+            unset($body->data);
+
+            $baseList = new BaseModelList();
+            $baseList->loadFromArray($body);
+
+            $modelName = $this->model;
+            foreach ($items as $item) {
+                /** @psalm-suppress UndefinedClass */
+                $model = new $modelName($this->httpClient);
+
+                $message           = $model->loadFromArray($item);
+                $baseList->items[] = $message;
+            }
+            return $baseList;
+        }
+
+        return $this->processRequest($status, $body);
     }
 
     /**
@@ -199,7 +224,7 @@ class BaseResource
     {
 
         if ($status === HttpClient::SERVER_ERROR) {
-            throw new Exceptions\ServerException('Got an invalid JSON response from the server.');
+            throw new Exceptions\ServerException('Server was unable to handle this request');
         }
         if ($status === HttpClient::HTTP_UNAUTHORIZED) {
             throw new Exceptions\AuthenticateException('You are not authorized to perform this action');
