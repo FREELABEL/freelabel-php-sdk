@@ -230,7 +230,6 @@ class BaseResource
             throw new Exceptions\AuthenticateException('You are not authorized to perform this action');
         }
         $body = @json_decode($body);
-        dd($body);
         if ($body === null || $body === false) {
             throw new ServerException('Got an invalid JSON response from the server.');
         }
