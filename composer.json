@@ -1,0 +1,34 @@
+{
+  "name": "freelabel/freelabel-php-sdk",
+  "description": "Freelabel Php Sdk to integrate Freelabel system",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Ateeq R. Gondal",
+      "email": "ateeqrgondal@gmail.com"
+    },
+    {
+      "name": "Alex mayo",
+      "email": "alex@freelabel.net"
+    }
+  ],
+    "require": {
+    "php": ">=7.3|^8.0",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "guzzlehttp/guzzle": "^7.4"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8.0|^9.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Freelabel\\": "src/Freelabel/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  }
+}
