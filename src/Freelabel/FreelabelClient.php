@@ -37,8 +37,9 @@ class FreelabelClient {
     public $productCategory;
 
 
-    public function __construct($accessKey = null, HttpClient $httpClient = null, array $config = [])
+    public function __construct($baseUrl, $accessKey = null, HttpClient $httpClient = null, array $config = [])
     {
+        $this->endpoint = $baseUrl;
         if ($httpClient === null) {
             $this->httpClient = new HttpClient(self::ENDPOINT);
         } else {
