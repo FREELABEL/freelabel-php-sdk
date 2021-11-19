@@ -5,11 +5,11 @@ use Freelabel\Http\HttpClient;
 use Freelabel\Resource\Base\BaseResource;
 
 /**
- * Class Product
+ * Class ProductType
  *
  * @package Freelabel\Resources
  */
-class Product extends BaseResource
+class ProductType extends BaseResource
 {
     protected $resourceUrl = 'user/products';
 

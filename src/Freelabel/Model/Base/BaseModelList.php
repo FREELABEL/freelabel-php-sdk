@@ -3,11 +3,7 @@
 namespace Freelabel\Model\Base;
 
 
-/**
- * Class BaseList
- *
- * @package Freelabel\Objects
- */
+
 class BaseModelList extends BaseModel
 {
     public $limit;

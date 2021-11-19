@@ -2,11 +2,7 @@
 
 namespace Freelabel\Model\Base;
 
-/**
- * Class Base
- *
- * @package Freelabel\Objects
- */
+
 class BaseModel
 {
     /**
