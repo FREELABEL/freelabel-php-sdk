@@ -8,6 +8,7 @@ use Freelabel\Http\HttpClient;
 use Freelabel\Resource\Product\Product;
 use Freelabel\Resource\Product\ProductCategory;
 use Freelabel\Resource\Product\ProductType;
+use Freelabel\Resource\Product\ProductVariant;
 
 /**
  * Class Client
@@ -25,6 +26,11 @@ class FreelabelClient {
      * @var Resources\Product
      */
     public $product;
+
+    /**
+     * @var Resources\ProductVariant
+     */
+    public $productVariant;
 
     /**
      * @var Resources\ProductType
@@ -54,6 +60,7 @@ class FreelabelClient {
         }
 
         $this->product = new Product($this->httpClient);
+        $this->productVariant = new ProductVariant($this->httpClient);
         $this->productType = new ProductType($this->httpClient);
         $this->productCategory = new ProductCategory($this->httpClient);
     }
