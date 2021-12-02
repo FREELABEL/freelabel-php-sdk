@@ -180,6 +180,7 @@ class HttpClient
      */
     public function sendHttpRequest($method, $resourceUrl, $query = null, $body = null)
     {
+
         if ($this->authentication === null) {
             throw new AuthenticateException('Can not perform API Request without Authentication');
         }
