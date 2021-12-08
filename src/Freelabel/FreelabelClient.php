@@ -5,10 +5,13 @@ namespace Freelabel;
 
 use Freelabel\Authentication\Auth;
 use Freelabel\Http\HttpClient;
+use Freelabel\Resource\Product\Collection;
 use Freelabel\Resource\Product\Product;
 use Freelabel\Resource\Product\ProductCategory;
+use Freelabel\Resource\Product\ProductColor;
 use Freelabel\Resource\Product\ProductType;
 use Freelabel\Resource\Product\ProductVariant;
+use Freelabel\Resource\Product\ShippingOption;
 
 /**
  * Class Client
@@ -41,6 +44,9 @@ class FreelabelClient {
      * @var Resources\ProductCategory
      */
     public $productCategory;
+    public $shippingOption;
+    public $productCollection;
+    public $productColor;
 
 
     public function __construct($baseUrl, $accessKey = null, HttpClient $httpClient = null, array $config = [])
@@ -63,6 +69,9 @@ class FreelabelClient {
         $this->productVariant = new ProductVariant($this->httpClient);
         $this->productType = new ProductType($this->httpClient);
         $this->productCategory = new ProductCategory($this->httpClient);
+        $this->shippingOption = new ShippingOption($this->httpClient);
+        $this->productCollection = new Collection($this->httpClient);
+        $this->productColor = new ProductColor($this->httpClient);
     }
 
 

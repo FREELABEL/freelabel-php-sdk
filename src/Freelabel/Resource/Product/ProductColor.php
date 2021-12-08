@@ -9,14 +9,13 @@ use Freelabel\Resource\Base\BaseResource;
  *
  * @package Freelabel\Resources
  */
-class Product extends BaseResource
+class ProductColor extends BaseResource
 {
-    protected $resourceUrl = 'user/products';
-    protected $adminResourceUrl = 'admin/products';
+    protected $resourceUrl = 'user/products/colors';
 
     public function __construct(HttpClient $httpClient)
     {
-        $this->setModel(new \Freelabel\Model\Product\Product());
+        $this->setModel(new \Freelabel\Model\Product\ProductColor());
         $this->setResourceUrl($this->resourceUrl);
         parent::__construct($httpClient);
     }

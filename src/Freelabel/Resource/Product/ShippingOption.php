@@ -9,14 +9,13 @@ use Freelabel\Resource\Base\BaseResource;
  *
  * @package Freelabel\Resources
  */
-class Product extends BaseResource
+class ShippingOption extends BaseResource
 {
-    protected $resourceUrl = 'user/products';
-    protected $adminResourceUrl = 'admin/products';
+    protected $resourceUrl = 'user/products/shipping-options';
 
     public function __construct(HttpClient $httpClient)
     {
-        $this->setModel(new \Freelabel\Model\Product\Product());
+        $this->setModel(new \Freelabel\Model\Product\ShippingOption());
         $this->setResourceUrl($this->resourceUrl);
         parent::__construct($httpClient);
     }
