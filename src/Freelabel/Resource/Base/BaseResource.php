@@ -231,7 +231,7 @@ class BaseResource
         }
         $body = @json_decode($body);
         if ($body === null || $body === false) {
-            throw new ServerException('Got an invalid JSON response from the server.');
+            throw new Exceptions\ServerException('Got an invalid JSON response from the server.');
         }
 
         if (!empty($body->errors)) {
