@@ -113,6 +113,7 @@ class BaseResource
     {
         $body = json_encode($model);
         list($status, , $body) = $this->httpClient->sendHttpRequest(\Freelabel\Http\HttpClient::REQUEST_POST, $this->resourceUrl, $query, $body);
+
         return $this->processRequest($status, $body);
     }
 

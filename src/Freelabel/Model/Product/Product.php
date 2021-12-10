@@ -18,7 +18,7 @@ class Product extends BaseModel
     public $reference_no;
     public $product_category_id;
     public $product_subcategory_id;
-    public $user_id;
+    public $profile_id;
     public $image;
     public $thumbnail;
     public $retail_price;
