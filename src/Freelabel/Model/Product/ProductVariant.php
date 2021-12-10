@@ -18,7 +18,6 @@ class ProductVariant extends BaseModel
     public $price;
     public $title;
     public $color;
-    public $product_color;
     public $size;
     public $quantity_available;
     public $quantity_total;
