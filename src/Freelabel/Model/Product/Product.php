@@ -3,7 +3,6 @@
 namespace Freelabel\Model\Product;
 
 
-
 use Freelabel\Model\Base\BaseModel;
 
 /**
@@ -30,6 +29,11 @@ class Product extends BaseModel
     public $type;
     public $title;
     public $price;
+    public $variants;
+    public $images;
+    public $category;
+    public $subcategory;
+    public $colors;
     public $created_at;
     public $updated_at;
 }

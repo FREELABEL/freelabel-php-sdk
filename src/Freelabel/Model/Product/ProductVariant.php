@@ -3,7 +3,6 @@
 namespace Freelabel\Model\Product;
 
 
-
 use Freelabel\Model\Base\BaseModel;
 
 /**
@@ -16,17 +15,20 @@ class ProductVariant extends BaseModel
 
     public $id;
     public $product;
+    public $price;
+    public $color;
     public $size;
+    public $quantity_available;
+    public $quantity_total;
+    public $options;
+    public $tags;
+    public $product_id;
+    public $product_category_size_id;
+    public $product_color_id;
+    public $retail_price;
     public $image;
     public $thumbnail;
-    public $retail_price;
-    public $attributes;
-    public $tags;
     public $description;
-    public $type;
-    public $title;
-    public $price;
     public $created_at;
     public $updated_at;
-    public $is_active;
 }

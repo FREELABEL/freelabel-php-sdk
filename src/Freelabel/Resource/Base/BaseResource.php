@@ -188,9 +188,9 @@ class BaseResource
     public function read($id = null)
     {
         $resourceUrl = $this->resourceUrl . (($id) ? '/' . $id : null);
-        list(, , $body) = $this->httpClient->sendHttpRequest(HttpClient::REQUEST_GET, $resourceUrl);
+        list($status, , $body) = $this->httpClient->sendHttpRequest(HttpClient::REQUEST_GET, $resourceUrl);
 
-        return $this->processRequest($body);
+        return $this->processRequest($status,$body);
     }
 
     /**
