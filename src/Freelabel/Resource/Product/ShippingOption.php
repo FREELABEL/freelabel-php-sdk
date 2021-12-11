@@ -11,7 +11,7 @@ use Freelabel\Resource\Base\BaseResource;
  */
 class ShippingOption extends BaseResource
 {
-    protected $resourceUrl = 'user/products/shipping-options';
+    protected $resourceUrl = 'user/shipping-options';
 
     public function __construct(HttpClient $httpClient)
     {

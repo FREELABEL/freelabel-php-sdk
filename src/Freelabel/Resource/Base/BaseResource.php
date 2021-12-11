@@ -204,12 +204,14 @@ class BaseResource
     public function delete($id)
     {
         $resourceUrl = $this->resourceUrl . '/' . $id;
-        list($status, $headers , $body) = $this->httpClient->performHttpRequest(\Freelabel\Http\HttpClient::REQUEST_DELETE, $resourceUrl);
+        list($status, $headers , $body) = $this->httpClient->sendHttpRequest(\Freelabel\Http\HttpClient::REQUEST_DELETE, $resourceUrl);
 
         if ($status === HttpClient::HTTP_NO_CONTENT) {
             return true;
         }
-
+        if ($status === HttpClient::NOT_FOUND) {
+            return false;
+        }
         return $this->processRequest($status, $body);
     }
 

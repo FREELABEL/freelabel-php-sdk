@@ -11,7 +11,7 @@ use Freelabel\Resource\Base\BaseResource;
  */
 class Collection extends BaseResource
 {
-    protected $resourceUrl = 'user/products/collections';
+    protected $resourceUrl = 'user/collections';
 
     public function __construct(HttpClient $httpClient)
     {

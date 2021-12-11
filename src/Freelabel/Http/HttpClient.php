@@ -28,6 +28,7 @@ class HttpClient
     const HTTP_VALIDATION_ERROR = 422;
     const HTTP_UNAUTHORIZED = 401;
     const SERVER_ERROR = 500;
+    const NOT_FOUND = 404;
 
     /**
      * @var string
