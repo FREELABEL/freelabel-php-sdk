@@ -200,9 +200,10 @@ class HttpClient
           'http_errors' => false,
           'verify' => false
         ]);
+
         $response = $client->request($method, $this->getRequestUrl($resourceUrl, $query), [
             'headers' => $headers,
-            'body' => $body
+            'body' => $body 
         ]);
 
         return  [$response->getStatusCode(), $response->getHeaders(), $response->getBody()];

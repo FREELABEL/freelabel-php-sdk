@@ -248,6 +248,31 @@ class BaseResource
 
         return $this->model->loadFromArray($body->data);
     }
+    public function processRequestUpdate($status, $body)
+    {
+
+        if ($status === HttpClient::SERVER_ERROR) {
+            throw new Exceptions\ServerException('Server was unable to handle this request');
+        }
+        if ($status === HttpClient::HTTP_UNAUTHORIZED) {
+            throw new Exceptions\AuthenticateException('You are not authorized to perform this action');
+        }
+        $body = @json_decode($body);
+        if ($body === null || $body === false) {
+            throw new Exceptions\ServerException('Got an invalid JSON response from the server.');
+        }
+
+        if (!empty($body->errors)) {
+            $responseError = new ResponseError($body);
+            throw new Exceptions\RequestException($responseError->getErrorString());
+        }
+
+        if ($this->responseObject) {
+            return $this->responseObject->loadFromArray($body);
+        }
+
+        return $this->model->loadFromArray($body->data);
+    }
 
     /**
      * @param mixed $model
@@ -259,6 +284,7 @@ class BaseResource
      */
     public function update($model, $id)
     {
+
         $objVars = get_object_vars($model);
         $body = [];
         foreach ($objVars as $key => $value) {
@@ -270,8 +296,8 @@ class BaseResource
         $resourceUrl = $this->resourceUrl . ($id ? '/' . $id : null);
         $body = json_encode($body);
 
-        list(, , $body) = $this->httpClient->performHttpRequest(HttpClient::REQUEST_PUT, $resourceUrl, false, $body);
-        return $this->processRequest($body);
+        list($status, , $body) = $this->httpClient->sendHttpRequest(HttpClient::REQUEST_PUT, $resourceUrl, true, $body);
+        return $this->processRequest($status, $body);
     }
 
     /**

@@ -28,6 +28,7 @@ class Product extends BaseModel
     public $is_active;
     public $type;
     public $title;
+    public $subtitle;
     public $price;
     public $variants;
     public $images;
