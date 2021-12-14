@@ -27,7 +27,7 @@ class ProductVariant extends BaseModel
     public $product_category_size_id;
     public $product_color_id;
     public $retail_price;
-    public $image;
+    public $photos;
     public $thumbnail;
     public $description;
     public $created_at;

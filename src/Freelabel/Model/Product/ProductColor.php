@@ -14,7 +14,7 @@ class ProductColor extends BaseModel
 {
     public $id;
     public $color;
-    public $image;
+    public $photos;
     public $product_id;
     public $created_at;
     public $updated_at;
