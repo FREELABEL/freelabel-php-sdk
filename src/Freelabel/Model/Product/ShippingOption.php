@@ -20,7 +20,7 @@ class ShippingOption extends BaseModel
     public $cost;
     public $policy;
     public $profile_id;
-    public $image;
+    public $photos;
     public $thumbnail;
     public $created_at;
     public $updated_at;
