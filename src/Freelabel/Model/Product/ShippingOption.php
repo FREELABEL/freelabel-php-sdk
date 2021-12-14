@@ -15,8 +15,8 @@ class ShippingOption extends BaseModel
     public $id;
     public $title;
     public $description;
-    public $delivery_time;
-    public $shipping_time;
+    public $delivery_amount;
+    public $shipping_frequency;
     public $cost;
     public $policy;
     public $profile_id;
