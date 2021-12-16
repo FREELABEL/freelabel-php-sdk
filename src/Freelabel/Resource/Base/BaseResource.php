@@ -25,9 +25,7 @@ class BaseResource
      */
     protected $resourceUrl;
 
-    /**
-     * @var Objects\Hlr|Objects\Message|Objects\Balance|Objects\Verify|Objects\Lookup|Objects\VoiceMessage|Objects\Conversation\Conversation
-     */
+
     protected $model;
 
     /**
@@ -71,9 +69,7 @@ class BaseResource
         $this->model = $model;
     }
 
-    /**
-     * @return Objects\Balance|Objects\Conversation\Conversation|Objects\Hlr|Objects\Lookup|Objects\Message|Objects\Verify|Objects\VoiceMessage
-     */
+
     public function getModel()
     {
         return $this->model;
@@ -97,18 +93,6 @@ class BaseResource
         return $this->responseObject;
     }
 
-    /**
-     * @no-named-arguments
-     *
-     * @param mixed $model
-     * @param array|null $query
-     *
-     * @return Objects\Balance|Objects\Conversation\Conversation|Objects\Hlr|Objects\Lookup|Objects\MessageResponse|Objects\Verify|Objects\VoiceMessage|null
-     *
-     * @throws Exceptions\HttpException
-     * @throws Exceptions\RequestException
-     * @throws Exceptions\ServerException
-     */
     public function create($model, $query = null)
     {
         $body = json_encode($model);
@@ -117,11 +101,6 @@ class BaseResource
         return $this->processRequest($status, $body);
     }
 
-    /**
-     * @param array|null $parameters
-     *
-     * @return Objects\Balance|Objects\BaseList|Objects\Conversation\Conversation|Objects\Hlr|Objects\Lookup|Objects\Message|Objects\Verify|Objects\VoiceMessage|null
-     */
     public function getListWithPagination(array $parameters =  [])
     {
         list($status, , $body) = $this->httpClient->sendHttpRequest(\Freelabel\Http\HttpClient::REQUEST_GET, $this->resourceUrl, $parameters);
@@ -175,16 +154,6 @@ class BaseResource
         return $this->processRequest($status, $body);
     }
 
-    /**
-     * @no-named-arguments
-     *
-     * @param mixed $id
-     *
-     * @return Objects\Balance|Objects\Conversation\Conversation|Objects\Hlr|Objects\Lookup|Objects\Message|Objects\Verify|Objects\VoiceMessage|null
-     *
-     * @throws Exceptions\RequestException
-     * @throws Exceptions\ServerException
-     */
     public function read($id = null)
     {
         $resourceUrl = $this->resourceUrl . (($id) ? '/' . $id : null);
@@ -193,14 +162,6 @@ class BaseResource
         return $this->processRequest($status,$body);
     }
 
-    /**
-     * @param mixed $id
-     *
-     * @return Objects\Balance|Objects\Conversation\Conversation|Objects\Hlr|Objects\Lookup|Objects\Message|Objects\Verify|Objects\VoiceMessage|null|true
-     *
-     * @throws Exceptions\RequestException
-     * @throws Exceptions\ServerException
-     */
     public function delete($id)
     {
         $resourceUrl = $this->resourceUrl . '/' . $id;
@@ -215,14 +176,6 @@ class BaseResource
         return $this->processRequest($status, $body);
     }
 
-    /**
-     * @param string $body
-     *
-     * @return Objects\Balance|Objects\Conversation\Conversation|Objects\Hlr|Objects\Lookup|Objects\Message|Objects\Verify|Objects\VoiceMessage|Objects\MessageResponse|null
-     *
-     * @throws \Freelabel\Exceptions\RequestException
-     * @throws \Freelabel\Exceptions\ServerException
-     */
     public function processRequest($status, $body)
     {
 
@@ -249,27 +202,29 @@ class BaseResource
         return $this->model->loadFromArray($body->data);
     }
 
-    /**
-     * @param mixed $model
-     * @param mixed $id
-     *
-     * @return Objects\Balance|Objects\Conversation\Conversation|Objects\Hlr|Objects\Lookup|Objects\Message|Objects\Verify|Objects\VoiceMessage|null ->object
-     *
-     * @internal param array $parameters
-     */
-    public function update($model, $id)
+
+    public function update($model, $id = null)
     {
 
-        $objVars = get_object_vars($model);
         $body = [];
-        foreach ($objVars as $key => $value) {
-            if ($value !== null) {
-                $body[$key] = $value;
+        if (is_object($model)) {
+            if ($model->id) {
+                $id = $model->id;
             }
+            $objVars = get_object_vars($model);
+            $body = [];
+            foreach ($objVars as $key => $value) {
+                if ($value !== null) {
+                    $body[$key] = $value;
+                }
+            }
+            $body = json_encode($model);
         }
-
-        $resourceUrl = $this->resourceUrl . ($id ? '/' . $id : null);
-        $body = json_encode($body);
+        if (is_array($model)) {
+            $id = $model['id'];
+            $body = json_encode($model);
+        }
+        $resourceUrl = $this->resourceUrl . ($id ? '/' . $id : $model->id);
 
         list($status, , $body) = $this->httpClient->sendHttpRequest(HttpClient::REQUEST_PUT, $resourceUrl, true, $body);
         return $this->processRequest($status, $body);
