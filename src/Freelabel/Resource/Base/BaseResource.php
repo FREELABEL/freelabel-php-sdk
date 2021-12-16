@@ -221,10 +221,10 @@ class BaseResource
             $body = json_encode($model);
         }
         if (is_array($model)) {
-            $id = $model['id'];
+            $id = isset($model['id']) ? $model['id'] : $id;
             $body = json_encode($model);
         }
-        $resourceUrl = $this->resourceUrl . ($id ? '/' . $id : $model->id);
+        $resourceUrl = $this->resourceUrl . ($id ? '/' . $id : null);
 
         list($status, , $body) = $this->httpClient->sendHttpRequest(HttpClient::REQUEST_PUT, $resourceUrl, true, $body);
         return $this->processRequest($status, $body);
