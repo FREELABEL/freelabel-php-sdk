@@ -20,7 +20,7 @@ class Collection extends BaseResource
         parent::__construct($httpClient);
     }
 
-    public function addProducts($collectionId, $productIds) {
+    public function addProducts($productIds,$collectionId) {
         $resourceUrl = $this->resourceUrl . '/' . $collectionId . '/products';
         list($status, , $body) = $this->httpClient->sendHttpRequest(HttpClient::REQUEST_POST, $resourceUrl, null, json_encode(['product_ids' => $productIds]));
         return $this->processRequest($status,$body);
