@@ -18,9 +18,10 @@ class Collection extends BaseModel
     public $description;
     public $tags;
     public $options;
-    public $image;
+    public $photos;
     public $thumbnail;
     public $profile_id;
+    public $products;
     public $created_at;
     public $updated_at;
 }
