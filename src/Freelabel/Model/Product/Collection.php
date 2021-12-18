@@ -20,7 +20,7 @@ class Collection extends BaseModel
     public $options;
     public $photos;
     public $thumbnail;
-    public $profile_id;
+    public $profile;
     public $products;
     public $created_at;
     public $updated_at;
