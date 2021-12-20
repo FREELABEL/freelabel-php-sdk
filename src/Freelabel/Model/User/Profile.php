@@ -24,6 +24,7 @@ class Profile extends BaseModel
     public $email;
     public $phone;
     public $photo;
+    public $brand;
 
     public $created_at;
     public $updated_at;

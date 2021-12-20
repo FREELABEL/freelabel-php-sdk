@@ -11,8 +11,8 @@ use Freelabel\Resource\Product\ProductCategory;
 use Freelabel\Resource\Product\ProductColor;
 use Freelabel\Resource\Product\ProductType;
 use Freelabel\Resource\Product\ProductVariant;
-use Freelabel\Resource\Product\Profile;
 use Freelabel\Resource\Product\ShippingOption;
+use Freelabel\Resource\User\Profile;
 
 /**
  * Class Client
