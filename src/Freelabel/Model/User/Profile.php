@@ -1,6 +1,6 @@
 <?php
 
-namespace Freelabel\Model\Product;
+namespace Freelabel\Model\User;
 
 
 use Freelabel\Model\Base\BaseModel;
@@ -13,28 +13,18 @@ use Freelabel\Model\Base\BaseModel;
 class Profile extends BaseModel
 {
 
+    public $pk;
     public $id;
-    public $reference_no;
-    public $product_category_id;
-    public $product_subcategory_id;
-    public $profile_id;
-    public $image;
-    public $thumbnail;
-    public $retail_price;
-    public $attributes;
-    public $tags;
-    public $description;
-    public $product_type;
-    public $is_active;
-    public $type;
-    public $title;
-    public $subtitle;
-    public $price;
-    public $variants;
-    public $images;
-    public $category;
-    public $subcategory;
-    public $colors;
+    public $user_id;
+    public $active;
+    public $name;
+    public $bio;
+    public $city;
+    public $state;
+    public $email;
+    public $phone;
+    public $photo;
+
     public $created_at;
     public $updated_at;
 }
