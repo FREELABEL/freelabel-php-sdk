@@ -16,7 +16,7 @@ class Profile extends BaseResource
 
     public function __construct(HttpClient $httpClient)
     {
-        $this->setModel(new \Freelabel\Model\Product\Product());
+        $this->setModel(new \Freelabel\Model\User\Profile());
         $this->setResourceUrl($this->resourceUrl);
         parent::__construct($httpClient);
     }
