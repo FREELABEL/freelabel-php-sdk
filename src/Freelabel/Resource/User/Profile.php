@@ -61,7 +61,7 @@ class Profile extends BaseResource
 
             foreach ($items as $item) {
                 /** @psalm-suppress UndefinedClass */
-                $model = new \Freelabel\Model\Product\ProductVariant($this->httpClient);
+                $model = new \Freelabel\Model\Product\Product($this->httpClient);
 
                 $message           = $model->loadFromArray($item);
                 $baseList->items[] = $message;
