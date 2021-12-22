@@ -36,6 +36,7 @@ class Product extends BaseModel
     public $category;
     public $subcategory;
     public $colors;
+    public $shippable;
     public $created_at;
     public $updated_at;
 }

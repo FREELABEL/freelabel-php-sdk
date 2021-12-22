@@ -47,6 +47,8 @@ class Profile extends BaseModel
     public $billing_user_id;
     public $enable_fan_tips;
     public $links;
+    public $products;
+    public $collections;
     public $created_at;
     public $updated_at;
 }
