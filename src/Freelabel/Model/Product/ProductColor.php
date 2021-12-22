@@ -13,7 +13,7 @@ use Freelabel\Model\Base\BaseModel;
 class ProductColor extends BaseModel
 {
     public $id;
-    public $color;
+    public $title;
     public $photos;
     public $product_id;
     public $created_at;

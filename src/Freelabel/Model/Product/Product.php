@@ -19,7 +19,7 @@ class Product extends BaseModel
     public $product_subcategory_id;
     public $profile_id;
     public $profile;
-    public $image;
+    public $photo;
     public $thumbnail;
     public $retail_price;
     public $attributes;
