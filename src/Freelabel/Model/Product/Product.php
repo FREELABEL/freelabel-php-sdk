@@ -31,6 +31,7 @@ class Product extends BaseModel
     public $title;
     public $subtitle;
     public $price;
+    public $currency_code;
     public $variants;
     public $images;
     public $category;

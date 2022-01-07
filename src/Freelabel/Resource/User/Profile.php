@@ -38,13 +38,13 @@ class Profile extends BaseResource
                 /** @psalm-suppress UndefinedClass */
                 $model = new \Freelabel\Model\Product\Collection($this->httpClient);
 
-                $message           = $model->loadFromArray($item);
+                $message     = $model->loadFromArray($item);
                 $baseList->items[] = $message;
             }
             return $baseList;
         }
 
-        return $this->processRequest($status, $body);
+        //return $this->processRequest($status, $body);
     }
     public function getProducts($id)
     {
@@ -62,7 +62,6 @@ class Profile extends BaseResource
             foreach ($items as $item) {
                 /** @psalm-suppress UndefinedClass */
                 $model = new \Freelabel\Model\Product\Product($this->httpClient);
-
                 $message           = $model->loadFromArray($item);
                 $baseList->items[] = $message;
             }
