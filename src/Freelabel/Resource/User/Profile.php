@@ -43,8 +43,6 @@ class Profile extends BaseResource
             }
             return $baseList;
         }
-
-        //return $this->processRequest($status, $body);
     }
     public function getProducts($id)
     {
@@ -68,7 +66,6 @@ class Profile extends BaseResource
             return $baseList;
         }
 
-        return $this->processRequest($status, $body);
     }
 
 
