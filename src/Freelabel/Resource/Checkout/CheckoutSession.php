@@ -12,7 +12,7 @@ use Freelabel\Resource\Base\BaseResource;
  */
 class CheckoutSession extends BaseResource
 {
-    protected $resourceUrl = 'user/checkout-session';
+    protected $resourceUrl = 'user/checkout-sessions';
 
     public function __construct(HttpClient $httpClient)
     {
