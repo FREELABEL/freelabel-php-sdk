@@ -25,7 +25,6 @@ class Profile extends BaseResource
     {
         $resourceUrl = $this->resourceUrl . '/' . $id . '/collections';
         list($status, , $body) = $this->httpClient->sendHttpRequest(\Freelabel\Http\HttpClient::REQUEST_GET, $resourceUrl);
-
         if ($status === 200) {
             $body = json_decode($body);
             $items = $body->data;
@@ -43,7 +42,11 @@ class Profile extends BaseResource
             }
             return $baseList;
         }
+
+        return $this->processResponse($status, $body);
+
     }
+
     public function getProducts($id)
     {
         $resourceUrl = $this->resourceUrl . '/' . $id . '/products';
@@ -66,7 +69,7 @@ class Profile extends BaseResource
             return $baseList;
         }
 
+        return $this->processResponse($status, $body);
     }
-
 
 }

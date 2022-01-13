@@ -202,6 +202,27 @@ class BaseResource
         return $this->model->loadFromArray($body->data);
     }
 
+    public function processResponse($status, $body)
+    {
+        if ($status === HttpClient::SERVER_ERROR) {
+            throw new Exceptions\ServerException('Server was unable to handle this request');
+        }
+        if ($status === HttpClient::HTTP_UNAUTHORIZED) {
+            throw new Exceptions\AuthenticateException('You are not authorized to perform this action');
+        }
+        $body = @json_decode($body);
+        if ($body === null || $body === false) {
+            throw new Exceptions\ServerException('Got an invalid JSON response from the server.');
+        }
+
+        if (!empty($body->errors)) {
+            $responseError = new ResponseError($body);
+            throw new Exceptions\RequestException($responseError->getErrorString());
+        }
+
+        throw new Exceptions\ServerException('Something went wrong. Please try again.');
+    }
+
 
     public function update($model, $id = null)
     {

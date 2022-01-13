@@ -5,6 +5,7 @@ namespace Freelabel;
 
 use Freelabel\Authentication\Auth;
 use Freelabel\Http\HttpClient;
+use Freelabel\Resource\Checkout\CheckoutSession;
 use Freelabel\Resource\Product\Collection;
 use Freelabel\Resource\Product\Product;
 use Freelabel\Resource\Product\ProductCategory;
@@ -48,6 +49,7 @@ class FreelabelClient {
     public $shippingOption;
     public $productCollection;
     public $productColor;
+    public $checkoutSession;
 
 
     public function __construct($baseUrl, $accessKey = null, HttpClient $httpClient = null, array $config = [])
@@ -74,6 +76,7 @@ class FreelabelClient {
         $this->productCollection = new Collection($this->httpClient);
         $this->productColor = new ProductColor($this->httpClient);
         $this->userProfile = new Profile($this->httpClient);
+        $this->checkoutSession = new CheckoutSession($this->httpClient);
     }
 
 
