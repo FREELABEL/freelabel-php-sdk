@@ -216,7 +216,6 @@ class BaseResource
 
 
         if (!empty($body->data)) {
-            dd(get_class($this->model));
             return $this->model->loadFromArray($body->data);
         }
 
