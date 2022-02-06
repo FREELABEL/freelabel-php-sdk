@@ -76,10 +76,9 @@ class ResponseError
     public function getErrorString()
     {
         $errorDescriptions = [];
-
         foreach ($this->errors as $error) {
             $errorDescriptions[] = isset($error->description) ? $error->description : $error ;
         }
-        return implode(', ', $errorDescriptions[0]);
+        return implode(', ', array_merge(...$errorDescriptions));
     }
 }
