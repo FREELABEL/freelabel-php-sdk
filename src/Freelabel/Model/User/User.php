@@ -13,4 +13,7 @@ use Freelabel\Model\Base\BaseModel;
 class User extends BaseModel
 {
     public $id;
+    public $email;
+    public $full_name;
+    public $user_name;
 }
