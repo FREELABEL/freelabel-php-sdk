@@ -1,24 +1,23 @@
 <?php
 
-namespace Freelabel\Resource\User;
+namespace Freelabel\Resource\Event;
 use Freelabel\Http\HttpClient;
 use Freelabel\Model\Base\BaseModel;
 use Freelabel\Model\Base\BaseModelList;
 use Freelabel\Resource\Base\BaseResource;
 
 /**
- * Class Profile
+ * Class Event
  *
  * @package Freelabel\Resources
  */
-class User extends BaseResource
+class Event extends BaseResource
 {
-    protected $resourceUrl = 'user';
-    protected $authUrl = 'web/user';
+    protected $resourceUrl = 'event';
 
     public function __construct(HttpClient $httpClient)
     {
-        $this->setModel(new \Freelabel\Model\User\User());
+        $this->setModel(new \Freelabel\Model\Event\Event());
         $this->setResourceUrl($this->resourceUrl);
         parent::__construct($httpClient);
     }
@@ -47,19 +46,5 @@ class User extends BaseResource
 
         return $this->processResponse($status, $body);
     }
-
-    public function register($data)
-    {
-        $resourceUrl = $this->authUrl . '/'. 'register';
-        list($status, , $body) = $this->httpClient->sendHttpRequest(\Freelabel\Http\HttpClient::REQUEST_POST, $resourceUrl, $data);
-        return $this->processRequest($status, $body);
-    }
-    public function login($data)
-    {
-        $resourceUrl = $this->authUrl . '/'. 'login';
-        list($status, , $body) = $this->httpClient->sendHttpRequest(\Freelabel\Http\HttpClient::REQUEST_POST, $resourceUrl, $data);
-        return $this->processRequest($status,$body);
-    }
-
 
 }
