@@ -180,14 +180,21 @@ class BaseResource
     public function processRequest($status, $body)
     {
 
+        $body = json_decode($body);
+        $exceptionCode = null;
+        if (!empty($body->error_code)){
+            $exceptionCode = $body->error_code;
+        }
 
         if ($status === HttpClient::SERVER_ERROR) {
-            throw new Exceptions\ServerException('Server was unable to handle this request');
+            throw new Exceptions\ServerException('Server was unable to handle this request' . $exceptionCode);
+        }
+        if ($status === HttpClient::NOT_FOUND) {
+            throw new Exceptions\ServerException('Not found exception' . $exceptionCode);
         }
         if ($status === HttpClient::HTTP_UNAUTHORIZED) {
-            throw new Exceptions\AuthenticateException('You are not authorized to perform this action');
+            throw new Exceptions\AuthenticateException('You are not authorized to perform this action' . $exceptionCode);
         }
-        $body = json_decode($body);
 
         if ($body === null || $body === false) {
             throw new Exceptions\ServerException('Got an invalid JSON response from the server.');
@@ -212,7 +219,7 @@ class BaseResource
             return $this->model->loadFromArray($body->data);
         }
 
-        throw new Exceptions\RequestException('Bad response');
+        throw new Exceptions\RequestException('Bad response' . $exceptionCode);
 
     }
 

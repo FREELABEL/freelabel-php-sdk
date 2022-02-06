@@ -14,6 +14,7 @@ use Freelabel\Resource\Product\ProductType;
 use Freelabel\Resource\Product\ProductVariant;
 use Freelabel\Resource\Product\ShippingOption;
 use Freelabel\Resource\User\Profile;
+use Freelabel\Resource\User\User;
 
 /**
  * Class Client
@@ -50,6 +51,14 @@ class FreelabelClient {
     public $productCollection;
     public $productColor;
     public $checkoutSession;
+    /**
+     * @var User
+     */
+    public $user;
+    /**
+     * @var Profile
+     */
+    public $userProfile;
 
 
     public function __construct($baseUrl, $accessKey = null, HttpClient $httpClient = null, array $config = [])
@@ -77,6 +86,7 @@ class FreelabelClient {
         $this->productColor = new ProductColor($this->httpClient);
         $this->userProfile = new Profile($this->httpClient);
         $this->checkoutSession = new CheckoutSession($this->httpClient);
+        $this->user = new User($this->httpClient);
     }
 
 
