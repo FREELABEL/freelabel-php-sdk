@@ -2,7 +2,6 @@
 
 namespace Freelabel\Resource\User;
 use Freelabel\Http\HttpClient;
-use Freelabel\Model\Base\BaseModel;
 use Freelabel\Model\Base\BaseModelList;
 use Freelabel\Resource\Base\BaseResource;
 
