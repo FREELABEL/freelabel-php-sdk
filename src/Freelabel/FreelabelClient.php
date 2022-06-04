@@ -14,6 +14,7 @@ use Freelabel\Resource\Product\ProductType;
 use Freelabel\Resource\Product\ProductVariant;
 use Freelabel\Resource\Product\ShippingOption;
 use Freelabel\Resource\User\Profile;
+use Freelabel\Resource\Event\Event;
 use Freelabel\Resource\User\User;
 
 /**
@@ -82,6 +83,7 @@ class FreelabelClient {
         $this->productType = new ProductType($this->httpClient);
         $this->productCategory = new ProductCategory($this->httpClient);
         $this->shippingOption = new ShippingOption($this->httpClient);
+        $this->event = new Event($this->httpClient);
         $this->productCollection = new Collection($this->httpClient);
         $this->productColor = new ProductColor($this->httpClient);
         $this->userProfile = new Profile($this->httpClient);

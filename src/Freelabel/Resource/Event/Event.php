@@ -13,7 +13,7 @@ use Freelabel\Resource\Base\BaseResource;
  */
 class Event extends BaseResource
 {
-    protected $resourceUrl = 'event';
+    protected $resourceUrl = 'events';
 
     public function __construct(HttpClient $httpClient)
     {
