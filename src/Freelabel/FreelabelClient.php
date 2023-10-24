@@ -2,7 +2,6 @@
 
 namespace Freelabel;
 
-
 use Freelabel\Authentication\Auth;
 use Freelabel\Http\HttpClient;
 use Freelabel\Resource\Checkout\CheckoutSession;
@@ -22,45 +21,71 @@ use Freelabel\Resource\User\User;
  *
  * @package Freelabel
  */
-class FreelabelClient {
-
+class FreelabelClient
+{
     const ENDPOINT = 'http://api.freelabel.us/api/v1';
 
     protected $endpoint = self::ENDPOINT;
 
+    /**
+     * @var HttpClient
+     */
+    protected $httpClient;
 
     /**
-     * @var Resources\Product
+     * @var Product
      */
     public $product;
 
     /**
-     * @var Resources\ProductVariant
+     * @var ProductVariant
      */
     public $productVariant;
 
     /**
-     * @var Resources\ProductType
+     * @var ProductType
      */
     public $productType;
 
     /**
-     * @var Resources\ProductCategory
+     * @var ProductCategory
      */
     public $productCategory;
+
+    /**
+     * @var ShippingOption
+     */
     public $shippingOption;
+
+    /**
+     * @var Collection
+     */
     public $productCollection;
+
+    /**
+     * @var ProductColor
+     */
     public $productColor;
+
+    /**
+     * @var CheckoutSession
+     */
     public $checkoutSession;
+
     /**
      * @var User
      */
     public $user;
+
     /**
      * @var Profile
      */
     public $userProfile;
 
+    /**
+     * @var Event
+     */
+    public $event;
 
     public function __construct($baseUrl, $accessKey = null, HttpClient $httpClient = null, array $config = [])
     {
@@ -91,7 +116,6 @@ class FreelabelClient {
         $this->user = new User($this->httpClient);
     }
 
-
     public function setToken($token)
     {
         $authentication = new Auth($token);
@@ -108,6 +132,4 @@ class FreelabelClient {
 
         return 'PHP/' . PHP_VERSION_ID;
     }
-
-
 }
